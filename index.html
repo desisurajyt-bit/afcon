@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AFCON Box Style - Pro Controller v8.0</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700;900&display=swap');
+        :root { --panel-bg: #1e1e1e; --input-bg: #2d2d2d; --text-main: #ffffff; }
+        body { margin: 0; padding: 20px; font-family: 'Roboto', sans-serif; background: transparent; overflow-x: hidden; color: var(--text-main); }
+        .scoreboard-container { margin-left: 50px; margin-top: 50px; width: fit-content; filter: drop-shadow(0px 6px 12px rgba(0,0,0,0.6)); }
+        .afcon-box { display: flex; height: 140px; border-radius: 4px; overflow: hidden; }
+        .left-col { display: flex; flex-direction: column; width: 200px; }
+        .logo-area { height: 60%; background-color: #7D1526; display: flex; justify-content: center; align-items: center; padding: 10px; }
+        .tournament-logo { max-width: 95%; max-height: 95%; object-fit: contain; }
+        .timer-area { height: 40%; background-color: #ffffff; display: flex; justify-content: center; align-items: center; }
+        .timer-text { color: #000000; font-family: 'Oswald', sans-serif; font-size: 44px; font-weight: 700; }
+        .right-col { display: flex; flex-direction: column; min-width: 380px; }
+        .team-row { height: 50%; display: flex; align-items: center; padding: 0 25px; }
+        .flag { width: 65px; height: 42px; border: 1px solid rgba(255,255,255,0.2); margin-right: 20px; }
+        .team-name { font-family: 'Oswald', sans-serif; font-size: 38px; flex-grow: 1; text-transform: uppercase; }
+        .score { font-family: 'Oswald', sans-serif; font-size: 50px; font-weight: 700; }
+        .controller { background: var(--panel-bg); color: #ccc; padding: 25px; border-radius: 12px; width: 950px; margin: 50px auto; border: 1px solid #333; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .control-box { border: 1px solid #444; padding: 15px; border-radius: 8px; background: #252525; }
+        h3 { margin-top: 0; font-size: 13px; text-transform: uppercase; color: #888; border-bottom: 1px solid #444; padding-bottom: 8px; margin-bottom: 15px;}
+        .input-row { display: flex; align-items: center; margin-bottom: 10px; font-size: 13px; }
+        .input-row label { width: 140px; }
+        input { padding: 6px; border: 1px solid #444; border-radius: 4px; background: var(--input-bg); color: white; }
+        .short { width: 65px; text-align: center;}
+        .full { flex-grow: 1; }
+        .button-zone { grid-column: span 2; display: flex; gap: 12px; justify-content: center; }
+        button { padding: 12px 25px; font-weight: bold; cursor: pointer; border: none; border-radius: 5px; text-transform: uppercase; transition: 0.2s; }
+        .btn-start { background: #28a745; color: white; }
+        .btn-stop { background: #dc3545; color: white; }
+        .btn-reset { background: #6c757d; color: white; }
+        .btn-copy { background: #007bff; color: white; }
+    </style>
+</head>
+<body>
+    <div class="scoreboard-container">
+        <div class="afcon-box">
+            <div class="left-col"><div class="logo-area"><img id="ui-l-logo" class="tournament-logo" src=""></div><div class="timer-area"><span id="ui-timer" class="timer-text">LIVE</span></div></div>
+            <div class="right-col"><div id="ui-home-row" class="team-row"><img id="ui-h-flag" class="flag" src=""><span id="ui-h-name" class="team-name">HOME</span><span id="ui-h-score" class="score">0</span></div><div id="ui-away-row" class="team-row"><img id="ui-a-flag" class="flag" src=""><span id="ui-a-name" class="team-name">AWAY</span><span id="ui-a-score" class="score">0</span></div></div>
+        </div>
+    </div>
+    <div class="controller">
+        <div class="control-box"><h3>Timing</h3><div class="input-row"><label>Manual (M:S):</label><input type="number" id="cfg-m" class="short" value="0"> : <input type="number" id="cfg-s" class="short" value="0"></div><div class="input-row"><label>Auto Start:</label><input type="number" id="cfg-sh" class="short" placeholder="HH"> : <input type="number" id="cfg-sm" class="short" placeholder="MM"></div></div>
+        <div class="control-box"><h3>Stats</h3><div class="input-row"><label>Home (N/G):</label><input type="text" id="cfg-hn" class="short" value="ZAM"> <input type="number" id="cfg-hg" class="short" value="0"></div><div class="input-row"><label>Away (N/G):</label><input type="text" id="cfg-an" class="short" value="MAR"> <input type="number" id="cfg-ag" class="short" value="0"></div></div>
+        <div class="control-box"><h3>Colors</h3><div class="input-row"><label>Home Row:</label><input type="text" id="cfg-h-bg" class="short" value="darkgreen" style="width:100px;"> <input type="text" id="cfg-h-txt" class="short" value="white" style="width:80px;"></div><div class="input-row"><label>Away Row:</label><input type="text" id="cfg-a-bg" class="short" value="#7D1526" style="width:100px;"> <input type="text" id="cfg-a-txt" class="short" value="white" style="width:80px;"></div></div>
+        <div class="control-box"><h3>Links</h3><div class="input-row"><label>Logo:</label><input type="text" id="cfg-l-logo" class="full" value="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/CAF_Africa_Cup_of_Nations_Morocco_2025_logo.svg/1280px-CAF_Africa_Cup_of_Nations_Morocco_2025_logo.svg.png"></div><div class="input-row"><label>Home Flag:</label><input type="text" id="cfg-h-f" class="full" value="https://flagcdn.com/w160/zm.png"></div><div class="input-row"><label>Away Flag:</label><input type="text" id="cfg-a-f" class="full" value="https://flagcdn.com/w160/ma.png"></div></div>
+        <div class="button-zone">
+            <button class="btn-start" onclick="startTimer()">START</button>
+            <button class="btn-stop" onclick="stopTimer()">STOP</button>
+            <button class="btn-reset" onclick="resetAll()">RESET</button>
+            <button class="btn-copy" onclick="copyURL()">Copy Source Link</button>
+        </div>
+    </div>
+    <script>
+        let totalSecs = 0; let matchInterval = null; let isStarted = false;
+        function updateUI() {
+            document.getElementById('ui-h-name').innerText = document.getElementById('cfg-hn').value.toUpperCase(); document.getElementById('ui-a-name').innerText = document.getElementById('cfg-an').value.toUpperCase();
+            document.getElementById('ui-h-score').innerText = document.getElementById('cfg-hg').value; document.getElementById('ui-a-score').innerText = document.getElementById('cfg-ag').value;
+            document.getElementById('ui-h-flag').src = document.getElementById('cfg-h-f').value; document.getElementById('ui-a-flag').src = document.getElementById('cfg-a-f').value; document.getElementById('ui-l-logo').src = document.getElementById('cfg-l-logo').value;
+            document.getElementById('ui-home-row').style.backgroundColor = document.getElementById('cfg-h-bg').value; document.getElementById('ui-home-row').style.color = document.getElementById('cfg-h-txt').value;
+            document.getElementById('ui-away-row').style.backgroundColor = document.getElementById('cfg-a-bg').value; document.getElementById('ui-away-row').style.color = document.getElementById('cfg-a-txt').value;
+            if (!isStarted) { document.getElementById('ui-timer').innerText = "LIVE"; totalSecs = (parseInt(document.getElementById('cfg-m').value) || 0) * 60 + (parseInt(document.getElementById('cfg-s').value) || 0); }
+            else { let m = Math.floor(totalSecs / 60); let rs = totalSecs % 60; let pad = (v) => v < 10 ? "0"+v : v; let base = pad(m)+":"+pad(rs);
+                if (totalSecs > 2700 && totalSecs <= 3240) label = "45+"+pad(m-45)+":"+pad(rs); else if (totalSecs > 3240 && totalSecs <= 3720) label = "45+09:00"; else if (totalSecs > 5400 && totalSecs <= 7200) label = "90+"+pad(m-90)+":"+pad(rs); else if (totalSecs > 7200) label = "FT"; else label = base;
+                document.getElementById('ui-timer').innerText = label; }
+        }
+
+        function copyURL() {
+            const params = new URLSearchParams({
+                hn: document.getElementById('cfg-hn').value, an: document.getElementById('cfg-an').value,
+                hg: document.getElementById('cfg-hg').value, ag: document.getElementById('cfg-ag').value,
+                hBg: document.getElementById('cfg-h-bg').value, hTx: document.getElementById('cfg-h-txt').value,
+                aBg: document.getElementById('cfg-a-bg').value, aTx: document.getElementById('cfg-a-txt').value,
+                l: document.getElementById('cfg-l-logo').value, hf: document.getElementById('cfg-h-f').value, 
+                af: document.getElementById('cfg-a-f').value, sh: document.getElementById('cfg-sh').value, 
+                sm: document.getElementById('cfg-sm').value
+            });
+            const fullURL = window.location.href.split('?')[0] + '?' + params.toString();
+            const textArea = document.createElement("textarea"); textArea.value = fullURL; document.body.appendChild(textArea); textArea.select();
+            document.execCommand('copy'); document.body.removeChild(textArea);
+            alert("Full Source Link Copied! Paste this directly into the Browser Source URL in your 2nd OBS.");
+        }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('hn')) {
+                document.getElementById('cfg-hn').value = urlParams.get('hn'); document.getElementById('cfg-an').value = urlParams.get('an');
+                document.getElementById('cfg-hg').value = urlParams.get('hg'); document.getElementById('cfg-ag').value = urlParams.get('ag');
+                document.getElementById('cfg-h-bg').value = urlParams.get('hBg'); document.getElementById('cfg-h-txt').value = urlParams.get('hTx');
+                document.getElementById('cfg-a-bg').value = urlParams.get('aBg'); document.getElementById('cfg-a-txt').value = urlParams.get('aTx');
+                document.getElementById('cfg-l-logo').value = urlParams.get('l'); document.getElementById('cfg-h-f').value = urlParams.get('hf');
+                document.getElementById('cfg-a-f').value = urlParams.get('af'); document.getElementById('cfg-sh').value = urlParams.get('sh');
+                document.getElementById('cfg-sm').value = urlParams.get('sm');
+                updateUI();
+            }
+        };
+
+        function startTimer() { if (matchInterval) return; isStarted = true; matchInterval = setInterval(() => { totalSecs++; updateUI(); document.getElementById('cfg-m').value = Math.floor(totalSecs / 60); document.getElementById('cfg-s').value = totalSecs % 60; }, 1000); }
+        function stopTimer() { clearInterval(matchInterval); matchInterval = null; }
+        function resetAll() { stopTimer(); isStarted = false; totalSecs = 0; document.getElementById('cfg-m').value = 0; document.getElementById('cfg-s').value = 0; updateUI(); }
+        setInterval(() => { let h = document.getElementById('cfg-sh').value; let m = document.getElementById('cfg-sm').value; if (h && m && !isStarted) { let now = new Date(); if (now.getHours() == h && now.getMinutes() == m) startTimer(); } }, 1000);
+        setInterval(updateUI, 400);
+    </script>
+</body>
+</html>
