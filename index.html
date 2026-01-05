@@ -2,51 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AFCON Box Style - Pro Controller v8.1 (Automated Breaks)</title>
+    <title>ZAM Horizontal - Pro Controller v9.5</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700;900&display=swap');
-        :root { --panel-bg: #1e1e1e; --input-bg: #2d2d2d; --text-main: #ffffff; }
-        body { margin: 0; padding: 20px; font-family: 'Roboto', sans-serif; background: transparent; overflow-x: hidden; color: var(--text-main); }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+        :root { --theme-orange: #ffb700; --theme-white: #ffffff; --text-black: #000000; --text-red: #d20000; --panel-bg: #2b2b2b; }
+        body { margin: 0; padding: 20px; font-family: 'Roboto', sans-serif; background: transparent; overflow-x: hidden; }
         
-        /* Fixed Position Scoreboard */
-        .scoreboard-container { 
-            position: fixed; 
-            top: 50px; 
-            left: 50px; 
-            width: fit-content; 
-            filter: drop-shadow(0px 6px 12px rgba(0,0,0,0.6)); 
-            z-index: 100;
-        }
+        /* FIXED POSITION - DO NOT MOVE */
+        .scoreboard-container { display: flex; flex-direction: column; align-items: center; width: fit-content; position: fixed; top: 20px; left: 50px; }
         
-        .afcon-box { display: flex; height: 140px; border-radius: 4px; overflow: hidden; }
-        .left-col { display: flex; flex-direction: column; width: 200px; }
-        .logo-area { height: 60%; background-color: #7D1526; display: flex; justify-content: center; align-items: center; padding: 10px; }
-        .tournament-logo { max-width: 95%; max-height: 95%; object-fit: contain; }
-        .timer-area { height: 40%; background-color: #ffffff; display: flex; justify-content: center; align-items: center; }
-        .timer-text { color: #000000; font-family: 'Oswald', sans-serif; font-size: 38px; font-weight: 700; text-align: center; width: 100%; }
+        .league-logo-round { width: 60px; height: 60px; background-color: white; border-radius: 50%; border: 3px solid white; background-size: contain; background-repeat: no-repeat; background-position: center; margin-bottom: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); z-index: 5; }
+        .main-wrapper { display: flex; align-items: center; }
+        .timer-box { font-size: 34px; font-weight: 900; padding: 8px 0; border-top-left-radius: 12px; border-bottom-left-radius: 12px; width: 180px; text-align: center; box-shadow: 2px 2px 8px rgba(0,0,0,0.3); z-index: 2; overflow: hidden; white-space: nowrap; }
+        .score-bar { display: flex; align-items: center; height: 60px; margin-left: -5px; box-shadow: 4px 4px 10px rgba(0,0,0,0.4); border-radius: 8px; overflow: hidden; }
+        .team-section { display: flex; align-items: center; height: 100%; padding: 0 15px; }
+        .team-name { font-size: 30px; font-weight: 700; margin: 0 12px; }
+        .goals-center { display: flex; align-items: center; background-color: white; height: 100%; padding: 0 12px; border-left: 2px solid #eee; border-right: 2px solid #eee; }
+        .score-val { font-size: 42px; font-weight: 900; width: 45px; text-align: center; }
+        .score-divider { font-size: 30px; font-weight: 900; color: #333; }
+        .flag { width: 50px; height: 33px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.1); }
         
-        .right-col { display: flex; flex-direction: column; min-width: 380px; }
-        .team-row { height: 50%; display: flex; align-items: center; padding: 0 25px; }
-        .flag { width: 65px; height: 42px; border: 1px solid rgba(255,255,255,0.2); margin-right: 20px; }
-        .team-name { font-family: 'Oswald', sans-serif; font-size: 38px; flex-grow: 1; text-transform: uppercase; }
-        .score { font-family: 'Oswald', sans-serif; font-size: 50px; font-weight: 700; }
-        
-        /* Controller Section - Pushed down to avoid overlapping the fixed scoreboard */
-        .controller { 
-            background: var(--panel-bg); color: #ccc; padding: 25px; border-radius: 12px; 
-            width: 950px; margin: 250px auto 50px auto; border: 1px solid #333; 
-            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-            position: relative; z-index: 10;
-        }
-        .control-box { border: 1px solid #444; padding: 15px; border-radius: 8px; background: #252525; }
-        h3 { margin-top: 0; font-size: 13px; text-transform: uppercase; color: #888; border-bottom: 1px solid #444; padding-bottom: 8px; margin-bottom: 15px;}
-        .input-row { display: flex; align-items: center; margin-bottom: 10px; font-size: 13px; }
-        .input-row label { width: 140px; }
-        input { padding: 6px; border: 1px solid #444; border-radius: 4px; background: var(--input-bg); color: white; }
-        .short { width: 65px; text-align: center;}
+        .controller { background: #2b2b2b; color: white; padding: 20px; border-radius: 10px; width: 950px; margin: 150px auto 40px auto; border: 1px solid #444; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; position: relative; z-index: 10; }
+        .control-box { border: 1px solid #444; padding: 12px; border-radius: 6px; background: #333; }
+        h3 { margin-top: 0; font-size: 13px; text-transform: uppercase; color: #aaa; border-bottom: 1px solid #555; padding-bottom: 5px; }
+        .input-row { display: flex; align-items: center; margin-bottom: 8px; font-size: 12px; }
+        .input-row label { width: 150px; }
+        input { padding: 5px; border: 1px solid #555; border-radius: 4px; background: #222; color: white; }
+        .short { width: 60px; text-align: center; }
         .full { flex-grow: 1; }
-        .button-zone { grid-column: span 2; display: flex; gap: 12px; justify-content: center; }
-        button { padding: 12px 25px; font-weight: bold; cursor: pointer; border: none; border-radius: 5px; text-transform: uppercase; transition: 0.2s; }
+        .button-zone { grid-column: span 2; display: flex; gap: 10px; justify-content: center; }
+        button { padding: 10px 22px; font-weight: bold; cursor: pointer; border: none; border-radius: 4px; text-transform: uppercase; transition: 0.2s; }
         .btn-start { background: #28a745; color: white; }
         .btn-stop { background: #dc3545; color: white; }
         .btn-reset { background: #6c757d; color: white; }
@@ -55,55 +40,58 @@
 </head>
 <body>
     <div class="scoreboard-container">
-        <div class="afcon-box">
-            <div class="left-col">
-                <div class="logo-area"><img id="ui-l-logo" class="tournament-logo" src=""></div>
-                <div class="timer-area"><span id="ui-timer" class="timer-text">LIVE</span></div>
-            </div>
-            <div class="right-col">
-                <div id="ui-home-row" class="team-row"><img id="ui-h-flag" class="flag" src=""><span id="ui-h-name" class="team-name">HOME</span><span id="ui-h-score" class="score">0</span></div>
-                <div id="ui-away-row" class="team-row"><img id="ui-a-flag" class="flag" src=""><span id="ui-a-name" class="team-name">AWAY</span><span id="ui-a-score" class="score">0</span></div>
+        <div id="ui-league-logo" class="league-logo-round"></div>
+        <div class="main-wrapper">
+            <div id="ui-timer-box" class="timer-box"><span id="ui-timer">LIVE</span></div>
+            <div class="score-bar">
+                <div id="ui-home-sec" class="team-section">
+                    <img id="ui-h-flag" class="flag" src=""><span id="ui-h-name" class="team-name">HOME</span>
+                </div>
+                <div class="goals-center">
+                    <span id="ui-h-score" class="score-val">0</span><span class="score-divider">-</span><span id="ui-a-score" class="score-val">0</span>
+                </div>
+                <div id="ui-away-sec" class="team-section">
+                    <span id="ui-a-name" class="team-name">AWAY</span><img id="ui-a-flag" class="flag" src="">
+                </div>
             </div>
         </div>
     </div>
 
     <div class="controller">
         <div class="control-box">
-            <h3>Timing</h3>
-            <div class="input-row"><label>Manual (M:S):</label><input type="number" id="cfg-m" class="short" value="0"> : <input type="number" id="cfg-s" class="short" value="0"></div>
-            <div class="input-row"><label>Auto Start:</label><input type="number" id="cfg-sh" class="short" placeholder="HH"> : <input type="number" id="cfg-sm" class="short" placeholder="MM"></div>
+            <h3>Match Timing</h3>
+            <div class="input-row"><label>Manual (M:S):</label><input type="number" id="cfg-m" class="short" value="0" oninput="manualSync()"> : <input type="number" id="cfg-s" class="short" value="0" oninput="manualSync()"></div>
+            <div class="input-row"><label>Kickoff (HH:MM):</label><input type="number" id="cfg-sh" class="short" placeholder="HH"> : <input type="number" id="cfg-sm" class="short" placeholder="MM"></div>
         </div>
         <div class="control-box">
-            <h3>Stats</h3>
-            <div class="input-row"><label>Home (N/G):</label><input type="text" id="cfg-hn" class="short" value="ZAM"> <input type="number" id="cfg-hg" class="short" value="0"></div>
-            <div class="input-row"><label>Away (N/G):</label><input type="text" id="cfg-an" class="short" value="MAR"> <input type="number" id="cfg-ag" class="short" value="0"></div>
+            <h3>Match Data</h3>
+            <div class="input-row"><label>Home Name/Goal:</label><input type="text" id="cfg-hn" class="short" value="ZAM"> <input type="number" id="cfg-hg" class="short" value="0"></div>
+            <div class="input-row"><label>Away Name/Goal:</label><input type="text" id="cfg-an" class="short" value="MAR"> <input type="number" id="cfg-ag" class="short" value="0"></div>
         </div>
         <div class="control-box">
-            <h3>Colors</h3>
-            <div class="input-row"><label>Home Row:</label><input type="text" id="cfg-h-bg" class="short" value="darkgreen" style="width:100px;"> <input type="text" id="cfg-h-txt" class="short" value="white" style="width:80px; margin-left:5px;"></div>
-            <div class="input-row"><label>Away Row:</label><input type="text" id="cfg-a-bg" class="short" value="#7D1526" style="width:100px;"> <input type="text" id="cfg-a-txt" class="short" value="white" style="width:80px; margin-left:5px;"></div>
+            <h3>Visuals</h3>
+            <div class="input-row"><label>Home BG Color:</label><input type="text" id="cfg-h-bg" class="full" value="orange"></div>
+            <div class="input-row"><label>Away BG Color:</label><input type="text" id="cfg-a-bg" class="full" value="white"></div>
+            <div class="input-row"><label>Home Goal Color:</label><input type="text" id="cfg-hg-clr" class="full" value="black"></div>
+            <div class="input-row"><label>Away Goal Color:</label><input type="text" id="cfg-ag-clr" class="full" value="red"></div>
         </div>
         <div class="control-box">
             <h3>Links</h3>
-            <div class="input-row"><label>Logo:</label><input type="text" id="cfg-l-logo" class="full" value="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/CAF_Africa_Cup_of_Nations_Morocco_2025_logo.svg/1280px-CAF_Africa_Cup_of_Nations_Morocco_2025_logo.svg.png"></div>
+            <div class="input-row"><label>League Logo:</label><input type="text" id="cfg-l-logo" class="full" value="https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/CAF_logo.svg/1200px-CAF_logo.svg.png"></div>
             <div class="input-row"><label>Home Flag:</label><input type="text" id="cfg-h-f" class="full" value="https://flagcdn.com/w160/zm.png"></div>
             <div class="input-row"><label>Away Flag:</label><input type="text" id="cfg-a-f" class="full" value="https://flagcdn.com/w160/ma.png"></div>
         </div>
         <div class="button-zone">
-            <button class="btn-start" onclick="startTimer()">START</button>
-            <button class="btn-stop" onclick="stopTimer()">STOP</button>
-            <button class="btn-reset" onclick="resetAll()">RESET</button>
-            <button class="btn-copy" onclick="copyURL()">Copy Source Link</button>
+            <button class="btn-start" onclick="startTimer()">Start</button>
+            <button class="btn-stop" onclick="stopTimer()">Stop</button>
+            <button class="btn-reset" onclick="resetAll()">Reset</button>
+            <button class="btn-copy" onclick="copyURL()">Copy Link</button>
         </div>
     </div>
 
     <script>
-        let totalSecs = 0; 
-        let matchInterval = null; 
-        let isStarted = false;
-        let manualStartMinutes = 0;
-        let isBreakActive = false;
-        let breakSecs = 0;
+        let totalSecs = 0; let matchInterval = null; let isStarted = false; let isBreakStatic = false;
+        let staticElapsed = 0; let isSecondHalf = false; let lastAutoStartMin = -1;
 
         function updateUI() {
             document.getElementById('ui-h-name').innerText = document.getElementById('cfg-hn').value.toUpperCase(); 
@@ -111,130 +99,82 @@
             document.getElementById('ui-h-score').innerText = document.getElementById('cfg-hg').value; 
             document.getElementById('ui-a-score').innerText = document.getElementById('cfg-ag').value;
             document.getElementById('ui-h-flag').src = document.getElementById('cfg-h-f').value; 
-            document.getElementById('ui-a-flag').src = document.getElementById('cfg-a-f').value; 
-            document.getElementById('ui-l-logo').src = document.getElementById('cfg-l-logo').value;
+            document.getElementById('ui-a-flag').src = document.getElementById('cfg-a-f').value;
+            document.getElementById('ui-league-logo').style.backgroundImage = `url('${document.getElementById('cfg-l-logo').value}')`;
             
-            document.getElementById('ui-home-row').style.backgroundColor = document.getElementById('cfg-h-bg').value; 
-            document.getElementById('ui-home-row').style.color = document.getElementById('cfg-h-txt').value;
-            document.getElementById('ui-away-row').style.backgroundColor = document.getElementById('cfg-a-bg').value; 
-            document.getElementById('ui-away-row').style.color = document.getElementById('cfg-a-txt').value;
+            const hBg = document.getElementById('cfg-h-bg').value; const aBg = document.getElementById('cfg-a-bg').value;
+            const hGoal = document.getElementById('cfg-hg-clr').value; const aGoal = document.getElementById('cfg-ag-clr').value;
+            
+            document.getElementById('ui-timer-box').style.backgroundColor = hBg; document.getElementById('ui-timer-box').style.color = hGoal;
+            document.getElementById('ui-home-sec').style.backgroundColor = hBg; document.getElementById('ui-home-sec').style.color = hGoal;
+            document.getElementById('ui-away-sec').style.backgroundColor = aBg; document.getElementById('ui-away-sec').style.color = aGoal;
+            document.getElementById('ui-h-score').style.color = hGoal; document.getElementById('ui-a-score').style.color = aGoal;
 
-            if (!isStarted && !isBreakActive) { 
-                document.getElementById('ui-timer').innerText = "LIVE"; 
-                totalSecs = (parseInt(document.getElementById('cfg-m').value) || 0) * 60 + (parseInt(document.getElementById('cfg-s').value) || 0); 
-            } else if (isBreakActive) {
-                document.getElementById('ui-timer').innerText = "2ND HALF";
-            } else { 
-                let m = Math.floor(totalSecs / 60); 
-                let rs = totalSecs % 60; 
-                let pad = (v) => v < 10 ? "0"+v : v; 
-                let label = "";
+            let pad = (v) => v < 10 ? "0"+v : v;
+            if (!isStarted && !isBreakStatic) { document.getElementById('ui-timer').innerText = "LIVE"; return; }
+            if (isBreakStatic) { document.getElementById('ui-timer').innerText = "45+09:00"; return; }
 
-                // Logic: 45+ Stoppage (9 Mins)
-                if (totalSecs > 2700 && totalSecs <= 3240) {
-                    label = "45+"+pad(m-45)+":"+pad(rs);
-                } 
-                // Logic: 90+ Extra Time (30 Mins)
-                else if (totalSecs > 5400 && totalSecs <= 7200) {
-                    label = "90+"+pad(m-90)+":"+pad(rs);
-                }
-                // Logic: Post-Match message
-                else if (totalSecs > 7200) {
-                    label = "2ND HALF EXTRA";
-                }
-                else {
-                    label = pad(m)+":"+pad(rs);
-                }
-                document.getElementById('ui-timer').innerText = label; 
-            }
+            let m = Math.floor(totalSecs / 60); let rs = totalSecs % 60; 
+            if (totalSecs > 2700 && !isSecondHalf) { document.getElementById('ui-timer').innerText = "45+" + pad(m-45) + ":" + pad(rs); } 
+            else { document.getElementById('ui-timer').innerText = pad(m) + ":" + pad(rs); }
+        }
+
+        function manualSync() {
+            let manualMin = parseInt(document.getElementById('cfg-m').value) || 0;
+            let manualSec = parseInt(document.getElementById('cfg-s').value) || 0;
+            totalSecs = manualMin * 60 + manualSec;
+            isSecondHalf = manualMin >= 45;
+            updateUI();
         }
 
         function handleTimeFlow() {
-            // Trigger 8-minute break after 45+09:00 (3240 seconds)
-            if (totalSecs >= 3240 && !isBreakActive && manualStartMinutes < 45) {
-                isBreakActive = true;
-                breakSecs = 0;
-                return;
-            }
-
-            if (isBreakActive) {
-                breakSecs++;
-                if (breakSecs >= 480) { // 8 minutes break
-                    isBreakActive = false;
-                    totalSecs = 2700; // Reset to start of 2nd half (45:00)
-                }
+            if (totalSecs === 3240 && !isSecondHalf && !isBreakStatic) { isBreakStatic = true; staticElapsed = 0; return; }
+            if (isBreakStatic) {
+                staticElapsed++;
+                if (staticElapsed >= 480) { isBreakStatic = false; isSecondHalf = true; totalSecs = 2700; }
             } else {
                 totalSecs++;
-            }
-
-            updateUI();
-            if (!isBreakActive) {
-                document.getElementById('cfg-m').value = Math.floor(totalSecs / 60); 
+                document.getElementById('cfg-m').value = Math.floor(totalSecs / 60);
                 document.getElementById('cfg-s').value = totalSecs % 60;
             }
+            updateUI();
         }
+
+        function startTimer() { if (matchInterval) return; isStarted = true; manualSync(); matchInterval = setInterval(handleTimeFlow, 1000); updateUI(); }
+        function stopTimer() { clearInterval(matchInterval); matchInterval = null; isStarted = false; updateUI(); }
+        function resetAll() { stopTimer(); isBreakStatic = false; isSecondHalf = false; lastAutoStartMin = -1; totalSecs = 0; document.getElementById('cfg-m').value = 0; document.getElementById('cfg-s').value = 0; updateUI(); }
 
         function copyURL() {
             const params = new URLSearchParams({
                 hn: document.getElementById('cfg-hn').value, an: document.getElementById('cfg-an').value,
                 hg: document.getElementById('cfg-hg').value, ag: document.getElementById('cfg-ag').value,
-                hBg: document.getElementById('cfg-h-bg').value, hTx: document.getElementById('cfg-h-txt').value,
-                aBg: document.getElementById('cfg-a-bg').value, aTx: document.getElementById('cfg-a-txt').value,
+                hBg: document.getElementById('cfg-h-bg').value, aBg: document.getElementById('cfg-a-bg').value,
+                hgC: document.getElementById('cfg-hg-clr').value, agC: document.getElementById('cfg-ag-clr').value,
                 l: document.getElementById('cfg-l-logo').value, hf: document.getElementById('cfg-h-f').value, 
                 af: document.getElementById('cfg-a-f').value, sh: document.getElementById('cfg-sh').value, 
-                sm: document.getElementById('cfg-sm').value
+                sm: document.getElementById('cfg-sm').value, cm: document.getElementById('cfg-m').value, cs: document.getElementById('cfg-s').value
             });
             const fullURL = window.location.href.split('?')[0] + '?' + params.toString();
             const textArea = document.createElement("textarea"); textArea.value = fullURL; document.body.appendChild(textArea); textArea.select();
-            document.execCommand('copy'); document.body.removeChild(textArea);
-            alert("Full Source Link Copied!");
+            document.execCommand('copy'); document.body.removeChild(textArea); alert("Link Copied!");
         }
 
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('hn')) {
-                document.getElementById('cfg-hn').value = urlParams.get('hn'); document.getElementById('cfg-an').value = urlParams.get('an');
-                document.getElementById('cfg-hg').value = urlParams.get('hg'); document.getElementById('cfg-ag').value = urlParams.get('ag');
-                document.getElementById('cfg-h-bg').value = urlParams.get('hBg'); document.getElementById('cfg-h-txt').value = urlParams.get('hTx');
-                document.getElementById('cfg-a-bg').value = urlParams.get('aBg'); document.getElementById('cfg-a-txt').value = urlParams.get('aTx');
-                document.getElementById('cfg-l-logo').value = urlParams.get('l'); document.getElementById('cfg-h-f').value = urlParams.get('hf');
-                document.getElementById('cfg-a-f').value = urlParams.get('af'); document.getElementById('cfg-sh').value = urlParams.get('sh');
-                document.getElementById('cfg-sm').value = urlParams.get('sm');
-                updateUI();
-            }
+            const fields = {'cfg-hn':'hn','cfg-an':'an','cfg-hg':'hg','cfg-ag':'ag','cfg-h-bg':'hBg','cfg-a-bg':'aBg','cfg-hg-clr':'hgC','cfg-ag-clr':'agC','cfg-l-logo':'l','cfg-h-f':'hf','cfg-a-f':'af','cfg-sh':'sh','cfg-sm':'sm','cfg-m':'cm','cfg-s':'cs'};
+            for (let id in fields) { let val = urlParams.get(fields[id]); if (val !== null) document.getElementById(id).value = val; }
+            updateUI();
         };
 
-        function startTimer() { 
-            if (matchInterval) return; 
-            isStarted = true; 
-            manualStartMinutes = parseInt(document.getElementById('cfg-m').value) || 0;
-            totalSecs = manualStartMinutes * 60 + (parseInt(document.getElementById('cfg-s').value) || 0);
-            matchInterval = setInterval(handleTimeFlow, 1000); 
-        }
-
-        function stopTimer() { clearInterval(matchInterval); matchInterval = null; }
-        
-        function resetAll() { 
-            stopTimer(); 
-            isStarted = false; 
-            isBreakActive = false;
-            manualStartMinutes = 0;
-            totalSecs = 0; 
-            document.getElementById('cfg-m').value = 0; 
-            document.getElementById('cfg-s').value = 0; 
-            updateUI(); 
-        }
-
         setInterval(() => { 
-            let h = document.getElementById('cfg-sh').value; 
-            let m = document.getElementById('cfg-sm').value; 
-            if (h && m && !isStarted) { 
-                let now = new Date(); 
-                if (now.getHours() == h && now.getMinutes() == m) startTimer(); 
+            let h = document.getElementById('cfg-sh').value; let m = document.getElementById('cfg-sm').value; let now = new Date();
+            if (h !== "" && m !== "" && !isStarted && !isBreakStatic) { 
+                if (now.getHours() == parseInt(h) && now.getMinutes() == parseInt(m) && lastAutoStartMin !== now.getMinutes()) {
+                    lastAutoStartMin = now.getMinutes(); startTimer(); 
+                }
             } 
         }, 1000);
-
-        setInterval(updateUI, 400);
+        setInterval(updateUI, 500);
     </script>
 </body>
 </html>
